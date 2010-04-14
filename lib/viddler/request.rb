@@ -72,7 +72,7 @@ module Viddler
   
     def parse_response(raw_response)
       raise EmptyResponseError if raw_response.blank?
-      response_hash = Hash.from_xml(raw_response)
+      response_hash = Hash.from_xml(raw_response.to_s)
       if response_error = response_hash['error']
         raise ResponseError.new(viddler_error_message(response_error))
       end
